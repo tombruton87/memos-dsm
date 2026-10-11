@@ -1,0 +1,36 @@
+# Memos, as the Synology package runs it: the compose project in the memos
+# shared folder. The setup container writes .env beside this. The database
+# lives in the memos_data volume; the files people attach to memos go in
+# attachments/ in this shared folder, where File Station and Hyper Backup see them.
+services:
+  server:
+    image: ${MEMOS_IMAGE:-neosmemo/memos:0.31}
+    container_name: memos-server
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-5230}:5230"
+    volumes:
+      - data:/var/opt/memos
+      # Memos keeps attachments under assets/ in its data folder (its default, "local" storage):
+      # here that is attachments/ in this shared folder. Made by the package, never by Docker.
+      - type: bind
+        source: ./attachments
+        target: /var/opt/memos/assets
+        bind:
+          create_host_path: false
+    environment:
+      TZ: ${TZ:-UTC}
+      # Memos drops to this user after start-up, so the files it writes in the shared folder belong to the package's user.
+      MEMOS_UID: ${HOST_UID:-1000}
+      MEMOS_GID: ${HOST_GID:-1000}
+      # The address people use: Memos puts it in the links it makes.
+      MEMOS_INSTANCE_URL: ${APP_URL:-}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:5230/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  data:

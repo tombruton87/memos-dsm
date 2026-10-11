@@ -1,0 +1,8 @@
+, {
+    "step_title": "Memos",
+    "items": [{
+        "type": "textfield",
+        "desc": "The package makes your Memos account at the first start, as its administrator, with a strong password shown once in the Memos window in DSM. Sign-ups start off: you add the people you want in that window.",
+        "subitems": [{ "key": "wizard_admin_user", "desc": "Your username", "defaultValue": "", "validator": { "allowBlank": false, "regex": { "expr": "/^(?!dsm\$)[A-Za-z0-9]([A-Za-z0-9-]{0,34}[A-Za-z0-9])?\$/", "errorText": "Letters, digits and dashes, up to 36, starting and ending with a letter or digit (not dsm)" } } }]
+    }]
+}

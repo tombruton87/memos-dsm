@@ -1,0 +1,38 @@
+    <section data-page="users" hidden>
+      <div class="note">Everyone with an account in <a class="mm-link" href="#" target="_blank" rel="noopener">Memos</a>. Each person's memos are their own and private unless they choose to share one. Administrators can also change Memos's settings.</div>
+      <div class="note warn" id="us-noapi" hidden>Memos isn't answering the package's administrator right now, so people can't be changed from here. The setup log says why.</div>
+      <div class="tiles" id="us-tiles"></div>
+      <div class="card"><table><thead><tr><th>User</th><th>Role</th><th class="n">Memos</th><th>Last memo</th><th class="n"></th></tr></thead><tbody id="users"></tbody></table></div>
+      <div class="card"><h2>Sign-ups</h2><div class="in">
+        <p class="muted small">With sign-ups on, anyone who can reach Memos can make an account for themselves. Off, only an administrator adds people, here or in Memos.</p>
+        <p><span id="us-signups"></span> <span class="row" style="display:inline-flex" id="us-signups-btn"></span></p>
+        <p class="muted small" id="us-access"></p></div></div>
+      <div class="card"><h2>Add someone</h2><div class="in">
+        <label class="f"><span>Username</span><input type="text" id="nu-name" placeholder="dave" maxlength="36" autocomplete="off"></label>
+        <label class="f"><span>Role</span><select id="nu-role"><option value="user">Member</option><option value="admin">Administrator</option></select></label>
+        <button class="btn primary" id="nu-add" data-app>Add</button><p class="muted small">The password is made for them and shown once. They can change it in Memos → Settings → My Account.</p></div></div>
+    </section>
+
+    <section data-page="attachments" hidden>
+      <div class="note">Photos, documents and recordings attached to memos are kept as ordinary files in the <b>memos</b> shared folder, in <code id="at-dir">attachments/</code>, named with the time they were added. Leave them where they are — Memos finds each one by its name. To remove a file, remove it from its memo in Memos.</div>
+      <div class="tiles" id="at-tiles"></div>
+      <div class="card"><h2>Where new files go</h2><div class="in"><p id="at-where"></p><p class="muted small" id="at-other"></p></div></div>
+      <div class="card"><h2>By person</h2><table><thead><tr><th>User</th><th class="n">Files</th><th class="n">Size</th></tr></thead><tbody id="at-people"></tbody></table></div>
+      <div class="card"><h2>File size</h2><div class="in">
+        <p class="muted small">The biggest file anyone may attach to a memo.</p>
+        <label class="f"><span>Up to</span><select id="at-limit"><option value="30">30 MB</option><option value="100">100 MB</option><option value="250">250 MB</option><option value="1000">1 GB</option></select></label>
+        <button class="btn" id="at-limit-save" data-app>Save</button></div></div>
+    </section>
+
+    <section data-page="phones" hidden>
+      <div class="note">Memos needs no app from a store: its web app goes on a phone's home screen and opens like an app, ready to jot something down. Sign in with your Memos username and password.</div>
+      <div class="card"><h2>Open Memos on a phone</h2><div class="in" style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+        <img id="ph-qr" class="qr" alt="QR code of Memos's address">
+        <div style="flex:1;min-width:260px"><div class="mono-box" id="ph-url"></div>
+          <ol class="steps">
+            <li>Scan the code with the phone's camera and sign in.</li>
+            <li><b>iPhone and iPad</b>, in Safari: Share → <b>Add to Home Screen</b>.</li>
+            <li><b>Android</b>, in Chrome: ⋮ → <b>Add to Home screen</b> (or <b>Install app</b>).</li>
+          </ol>
+          <p class="muted small" id="ph-reach"></p></div></div></div>
+    </section>
